@@ -19,18 +19,34 @@ public class project_231218 {
 		int[] num1 = {30, 4, 50, 60, 14, 80, 45, 72, 94, 25};
 		int res = 0;
 		String[] af = new String[10];
+		String A = "A";
+		String F = "F";
+		
+		
 		
 		for(var i = 0; i<num1.length; i++ ) {
 			res += num1[i];
 		}
 		res = res/10;
+		
 		System.out.println(res);
 		
 		for(var i = 0; i<num1.length; i++) {
-			if(res <= num1[i])
-				System.out.print(" A ");
+			if(res <= num1[i]) {
+				af[i] = Integer.toString(num1[i]);
+				af[i] = A;
+			}else {
+				af[i] = Integer.toString(num1[i]);
+				af[i] = F;
+			}
+		}
+		for(var i=0; i<num1.length; i++) {
+			System.out.printf("%s",af[i]);
+			if(num1[i]==25) {
+				System.out.print("");
+			}
 			else
-				System.out.print(" F ");
+				System.out.print(" , ");
 		}
 	}
 
