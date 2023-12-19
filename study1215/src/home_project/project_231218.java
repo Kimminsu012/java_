@@ -1,5 +1,7 @@
 package home_project;
 
+import java.util.Arrays;
+
 public class project_231218 {
 
 	public static void main(String[] args) {
@@ -16,38 +18,63 @@ public class project_231218 {
 				// 새로운 배열에 만들어 출력하기
 				// 출력 결과 - F , F , A , A , F , A , F , A , A , F
 		
-		int[] num1 = {30, 4, 50, 60, 14, 80, 45, 72, 94, 25};
-		int res = 0;
-		String[] af = new String[10];
-		String A = "A";
-		String F = "F";
+//		int[] num1 = {30, 4, 50, 60, 14, 80, 45, 72, 94, 25};
+//		int res = 0;
+//		String[] af = new String[10];
+//		String A = "A";
+//		String F = "F";
+//		
+//		
+//		
+//		for(var i = 0; i<num1.length; i++ ) {
+//			res += num1[i];
+//		}
+//		res = res/10;
+//		
+//		System.out.println(res);
+//		
+//		for(var i = 0; i<num1.length; i++) {
+//			if(res <= num1[i]) {
+//				af[i] = Integer.toString(num1[i]);
+//				af[i] = A;
+//			}else {
+//				af[i] = Integer.toString(num1[i]);
+//				af[i] = F;
+//			}
+//		}
+//		for(var i=0; i<num1.length; i++) {
+//			System.out.printf("%s",af[i]);
+//			if(num1[i]==25) {
+//				System.out.print("");
+//			}
+//			else
+//				System.out.print(" , ");
+//		}
 		
+		// 선생님 정답
+		int[] score = {30, 4, 50, 60, 14, 80, 45, 72, 94, 25};
 		
-		
-		for(var i = 0; i<num1.length; i++ ) {
-			res += num1[i];
+		int total = 0;
+		for(int i=0; i<score.length; i++) {
+			total += score[i];
 		}
-		res = res/10;
-		
-		System.out.println(res);
-		
-		for(var i = 0; i<num1.length; i++) {
-			if(res <= num1[i]) {
-				af[i] = Integer.toString(num1[i]);
-				af[i] = A;
-			}else {
-				af[i] = Integer.toString(num1[i]);
-				af[i] = F;
-			}
-		}
-		for(var i=0; i<num1.length; i++) {
-			System.out.printf("%s",af[i]);
-			if(num1[i]==25) {
-				System.out.print("");
-			}
+		int avg = total/score.length;
+		char[] grade = new char[10];
+		for( int i = 0; i<score.length; i++) {
+			if( score[i] <= avg )
+				grade[i] = 'F';
 			else
-				System.out.print(" , ");
+				grade[i] = 'A';
 		}
+		System.out.println( Arrays.toString(grade) );
 	}
 
 }
+
+
+
+
+
+
+
+
