@@ -6,11 +6,16 @@ public class what_class {
 
 	public static void main(String[] args) {
 		// 교재 202p~207p 내용 ( 교재에 없는 내용도 포함 )
+		
+		member.company = "애플";
+		
 		member m1 = new member(); // member클래스의 인스턴스 생성
 		m1.age = 34;
 		m1.name = "이순신";
 		m1.num = 101;
 		System.out.println( m1 );
+		m1.company="삼성";
+		System.out.println( m1.company );
 		
 		
 		
