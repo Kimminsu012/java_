@@ -18,14 +18,27 @@ public class project_231219 {
 		String nn = line.replace("\n ", "\n");
 		System.out.println(nn);
 		
+		System.out.println();
+		
+		String[] line2 = line.split("#"); // 선생님 해답
+		 for( String sng : line2 )
+			  System.out.println(sng);
+		
+		System.out.println();
+		
 		String he = nn.replaceAll("당신", "그대");
 		System.out.println(he);
 		
-		String en = nn.replace("크리스마스" , "chrismas");
+		System.out.println();
+
+		String en = nn.replace("크리스마스" , "christmas");
 		System.out.println(en.toUpperCase());
 		
+		System.out.println();
+		
 		String[] sing = song.split("#");
-		System.out.println(sing[3]);
+		System.out.println(sing[3].trim()); // trim() - 양 끝 공백 제서
+		
 		
 		
 /*		1. # 기준으로 한줄씩 출력 하세요( #은 출력창에 나오면 안되요 )
