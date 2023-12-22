@@ -20,7 +20,8 @@ public class mart {
 	public String toString(){
 		String price_ = Integer.toString(price).replaceAll( "\\B(?=(\\d{3})+(?!\\d))" , "," );
 		DecimalFormat df = new DecimalFormat("###,###"); // 문자열 형식을 지정 #은 숫자를 표현
+		String quan_ = df.format(quan);
 		
-		return product_name + " - " + price_ + "원 (" + quan + "개)";
+		return product_name + " - " + price_ + "원 (" + quan_ + "개)";
 	}
 }
