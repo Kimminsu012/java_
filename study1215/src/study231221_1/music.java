@@ -27,7 +27,7 @@ public class music {
 		int min = playing_time/100; // 정수/정수 -> 정수를 이용
 		int sec = playing_time%100; // 나머지를 가져오는 값
 		
-		return min+":"+sec; 
+		return min+":"+sec;
 	}
 	
 }
