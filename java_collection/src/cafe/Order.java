@@ -92,6 +92,21 @@ public class Order {
 			e.printStackTrace();
 		}
 		
+		// 데이터베이스 데이터 저장 쿼리 만들어서 저장
+		// insert into 테이블명 (컬럼명,컬럼명,...) values(?,?,?); ?는 컬럼명 갯수만큼 넣어야 한다.
+		
+		String sql = "insert into history (customer,menu,price) values(?,?,?)";
+		try {
+			pt = conn.prepareStatement(sql);
+			pt.setString(1, id);
+			pt.setString(2, menu);
+			pt.setInt(3, price);
+			
+			pt.executeUpdate(); // 데이터베이스에 쿼리문 전달
+		}catch(SQLException e) {
+			System.out.println("데이터 삽입 실패");
+			e.printStackTrace();
+		}
 	}
 	
 	
