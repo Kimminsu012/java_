@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList , java.util.LinkedList"
-	session="false" errorPage="error.jsp" isErrorPage="false" isThreadSafe="true"
+	session="true" errorPage="error.jsp" isErrorPage="false" isThreadSafe="true"
 	buffer="16kb" autoFlush="true"    
 %>
 
@@ -47,6 +47,17 @@ String[] names = {"이순신", "김유신", "장보고", "문익점", "최무선
 
 --%>
     
+<%
+	String user = null;
+
+	if( session.getAttribute("user") != null ){
+		user = (String)session.getAttribute("user");
+	}
+
+%>
+    
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +76,7 @@ String[] names = {"이순신", "김유신", "장보고", "문익점", "최무선
 			<% } %>
 		</ul>
 	</div>
-	
+	<% if(user != null ){ %>
 	<form method="get" action="test.jsp">
 		<input type='text' name='name' placeholder="이름"> <br>
 		<input type='text' name='age' placeholder="나이"> <br>
@@ -76,7 +87,7 @@ String[] names = {"이순신", "김유신", "장보고", "문익점", "최무선
 		<button>전송</button>
 		
 	</form>
-	
+	<% } %>
 
 </body>
 </html>
