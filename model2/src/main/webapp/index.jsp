@@ -1,15 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> <%-- prefix - 변수이름처럼 이름 만들기 --%>
+<%--필요한 태그들만 사용하고 쓰지않는것들은 굳이 안해도 된다.s --%>
+<%--@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" --%>
+<%--@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" --%>
+<%--@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" --%>
+<%--@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml" --%>
+       
+      
     
-<%
-	String part = "main";
-	if( request.getAttribute("part") != null ){
-		part = (String)request.getAttribute("part");
-	}
-%>
     
     
+
+    
+<%-- test - 조건식 ,  --%>    
+<%-- 
+	core set : var-변수명, value-값, scope-영역(request,page(기본),application,session)
+	core if  : test-조건식, 조건식이 참일경우에 대해서만 처리가능
+	core choose : switch문과 비슷한 동작을 한다.
+		 when	: test-조건식, choose 내부에서 여러개의 when을 만들 수 있다.
+		 otherwise : choose내부의 when태그 중에 일치하는 조건이 없으면 otherwise가 실행된다.
+	core forEach : for문과 비슷한 동작, var-내부변수명, begin-시작값, end-종료값, step-증감값
+		 c:foreach var="i" begin="1" end="10" step="1" / 1씩 증가하며 10번을 반복
+		 c:foreach var="name" items="people" , people은 배열 또는 컬렉션
+	core redirect : url-처리할 페이지주소
+	
+	
+ --%>
+<c:set var="part" value="main" scope="page" />
+<c:if test="${part != null }" >
+	<c:set var="part" value="${part }" />
+</c:if>
     
     
     
@@ -26,8 +48,8 @@
 
 <%-- part 파라미터의 유무에 따라 추가 css,js --%>
 
-<link rel="stylesheet" href="./static/css/<%=part %>.css">
-<script src="./static/js/<%=part %>.js"></script>
+<link rel="stylesheet" href="./static/css/${part }.css">
+<script src="./static/js/${part }.js"></script>
 
 
 
@@ -40,7 +62,7 @@
 		<%@ include file="header.jsp" %>
 		
 		<div id="main">
-			<% pageContext.include(part+".jsp"); %>
+			<c:import url="${part }.jsp" charEncoding="UTF=8"/>
 		</div>
 		
 		

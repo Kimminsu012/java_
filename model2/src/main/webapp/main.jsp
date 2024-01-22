@@ -28,6 +28,6 @@
 		</ul>
 	</div>
 	<div class="right">
-	
+		<h2><a href="/why">왜 애플반인가?</a></h2>
 	</div>
 </div>
