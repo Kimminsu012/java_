@@ -61,4 +61,12 @@
 	게시판 - 목록, 글쓰기, 수정, 삭제, 댓글
 
 	jstl - jsp standard tag library
+	
+	core - 변수, 조건문, 반복문
+	
+	formatting - 날짜, 시간, 숫자, 통화단위, 텍스트 등을 표시하는 방법
+	
+	
+	
+	
  -->
