@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-${ emailList[0] }
-
+    
+<%@ page import="java.util.Arrays" %>
 
 
 <div id="signup_wrap"> <!-- enctype - 문서 이미지 등등 업로드를 할려면 꼭 필요하다. --> 
-	<form id="signupFm" method="post" action="/members"> 
-		<input type="hidden" name="cmd" value="signSave">
-		<div class="myphoto">
+	<form id="signupFm" method="post" action="/members/signSave">
+		<input type="hidden" name="cmd" value="dao">
+		
+		
+			<div class="myphoto">
 			<div class="photo"></div>
 			<input type="file" name="face" id="face">
 			<label for="face">내 사진 업로드</label>
@@ -42,6 +43,38 @@ ${ emailList[0] }
 		
 	</form>
 </div>
+
+<script>
+	var temp = '${ Arrays.toString(emailList) }';
+	temp = temp.substring(1 , temp.length-1);
+	let email = temp.split(", ");
+	console.log( email );
+	
+	$("#email").on("blur",function(){
+		if( $(this).val() != '' ){
+			if( email.indexOf($(this).val()) == -1 ){
+				$(".email_msg").text("사용가능한 이메일 입니다.");
+				$(".email_msg").removeClass("warning");
+			}else{
+				$(".email_msg").text("사용불가능한 이메일 입니다.");
+				$(".email_msg").addClass("warning");
+			}
+			
+			
+		}
+	});
+	
+</script>
+
+
+
+
+
+
+
+
+
+
 
 
 

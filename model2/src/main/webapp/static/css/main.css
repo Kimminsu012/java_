@@ -18,10 +18,11 @@
 .board_list li{
 	display:flex;
 	padding:7px 0;
-	
+	text-align:center;
+	border-bottom:1px solid #999;
 }
 .num{ width:15%;}
 .title{ width:45%;}
 .date{width:20%;}
 .writer{width:20%;}
-.hnum,.htitle,.hdate,.hwriter{font-weight:800;}
+.hnum, .htitle, .hdate, .hwriter{ font-weight:800; }
