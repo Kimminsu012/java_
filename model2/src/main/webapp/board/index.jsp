@@ -48,7 +48,11 @@
 					<th class="hit">조회수</th>
 				</tr>
 			</thead>
+			
 			<tbody>
+				<tr>
+					<td class="nonWrite">등록된 글이 없습니다</td>
+				</tr>
 				<tr>
 					<td class="num numtd"></td>
 					<td class="title titletd"></td>

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class board_Page implements board_action {
-
+	private board_dao dao = new board_dao();
 	@Override
 	public String action(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
