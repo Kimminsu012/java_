@@ -10,6 +10,7 @@
 
 <div id="write_wrap">
 	<form id="writeFm" method="get" action="/board_update.do">
+		<input type="hidden" name="id" value="${data.id }">
 		<div id="write_box">
 			<div class="input_box">
 				<label>제목</label>
