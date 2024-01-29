@@ -48,7 +48,7 @@ public class member_dao extends parent_dao {
 	
 	
 	// 이미지 저장
-	public void pictureUnsert(String img, int id) {
+	public void pictureInsert(String img, int id) {
 		String sql = "insert into picture(member_id, img_name) values(?,?)";
 		try {
 			pt = conn.prepareStatement(sql);
@@ -150,7 +150,7 @@ public class member_dao extends parent_dao {
 	
 	
 	
-	public void insert(member data) {
+	public int insert(member data) {
 		
 		String sql="insert into member(email,pw,name,tel) values(?,?,?,?)";
 		try {
@@ -161,11 +161,18 @@ public class member_dao extends parent_dao {
 			pt.setString(3, data.getName());
 			pt.setString(4, data.getTel());
 			pt.executeUpdate();
+			sql = "select id from member order by id desc limit 1"; // limit 제한 설정 , desc 내림차순
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			if( rs.next() ) {
+				return rs.getInt("id");
+			}
 			
 		}catch(SQLException e) {
 			System.out.println("회원가입 데이터베이스 저장 실패");
 			e.printStackTrace();
 		}
+		return 0;
 	}
 	
 	

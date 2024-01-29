@@ -98,7 +98,7 @@
 .list_table .nonWrite{ text-align:center; font-size:17px; font-weight:800;}
 .list_table td{ text-align:center;}
 .list_table .titletd{ text-align:left; font-weight:800;}
-.list_table .writertd{ text-align:right;}
+/* .list_table .writertd{ text-align:right;} */
 .list_table tfoot{ text-align:center;}
 .bi-door-open:before{ transform: scaleX(-1); }
 

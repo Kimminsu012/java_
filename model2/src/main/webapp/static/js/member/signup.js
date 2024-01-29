@@ -31,6 +31,17 @@
 			$("#signupFm").submit(); // form 내부의 데이터 서버에 전달
 		}
 	});
+	
+	$("#face").on("change",function(){
+			var file = event.target.files[0];
+			var reader = new FileReader();
+			reader.onload=function(e){
+				$(".photo").css("background", "url("+e.target.result+") no-repeat center");
+				$(".photo").css("backgorund-size", "cover");
+			};
+			reader.readAsDataURL( file );
+		});
+		
 });
 
 

@@ -33,6 +33,11 @@ public class member_update implements member_action{
 			
 			MultipartRequest mr = new MultipartRequest(request, path, size, "UTF-8", new DefaultFileRenamePolicy());
 			
+			String path1="C:\\Users\\dw\\git\\java_\\model2\\src\\main\\webapp\\static\\img";
+			// request.getRealPath("/")+"static.image"
+			
+			int size1 = 1024*1024*20;
+			
 			name = mr.getParameter("name");
 			tel = mr.getParameter("tel");
 			tel = tel.replace(" - ", "");
@@ -51,7 +56,7 @@ public class member_update implements member_action{
 		member user = (member)request.getSession().getAttribute("user");
 		
 		// 이미지 이름 저장
-		dao.pictureUnsert(face, user.getNum());
+		dao.pictureInsert(face, user.getNum());
 		
 		// 이름, 연락처 수정
 		user.setName(name); // 변경 이름 객체에 저장

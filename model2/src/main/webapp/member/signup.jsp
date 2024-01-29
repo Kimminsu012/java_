@@ -5,13 +5,13 @@
 
 
 <div id="signup_wrap"> <!-- enctype - 문서 이미지 등등 업로드를 할려면 꼭 필요하다. --> 
-	<form id="signupFm" method="post" action="/members/signSave">
+	<form id="signupFm" method="post" action="/members/signSave" enctype="multipart/form-data">
 		<input type="hidden" name="cmd" value="dao">
 		
 		
 			<div class="myphoto">
 			<div class="photo"></div>
-			<input type="file" name="face" id="face">
+			<input type="file" name="face" id="face" >
 			<label for="face">내 사진 업로드</label>
 		</div>
 		

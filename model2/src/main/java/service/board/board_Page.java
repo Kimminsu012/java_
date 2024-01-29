@@ -5,6 +5,8 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.board_dao;
+
 public class board_Page implements board_action {
 	private board_dao dao = new board_dao();
 	@Override
