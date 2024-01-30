@@ -14,13 +14,20 @@ public class board_update implements board_action {
 	@Override
 	public String action(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		int num = Integer.parseInt(request.getParameter("id"));
+		String title = request.getParameter("title");
+		String email = request.getParameter("email");
+		String lang = request.getParameter("lang");
+		String content = request.getParameter("content");
 		
-		board data = dao.selectDetail(num);
+		int id = Integer.parseInt(request.getParameter("id"));
 		
-		request.setAttribute("prt", "board/update");
-		request.setAttribute("data", data);
-		return "/";
+		board b = new board(0, title, null, email, lang, content);
+		b.setId(id);
+		dao.update(b);
+		
+		response.sendRedirect("/board_read.do?id="+id);
+		
+		return null;
 	}
 
 }

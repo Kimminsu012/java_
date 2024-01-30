@@ -1,7 +1,9 @@
 package service.board;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DAO.board_dao;
 import DTO.board;
+import DTO.reply;
 
 public class board_read implements board_action {
 	private board_dao dao = new board_dao();
@@ -20,7 +23,7 @@ public class board_read implements board_action {
 		boolean isCook=true;
 
 		
-		int num = Integer.parseInt( request.getParameter("id") );
+		int num = Integer.parseInt( request.getParameter("id") ); // 글번호
 		for( Cookie ck : cooks) {
 			String n = ck.getName();
 			if(n.equals(num+"")) {
@@ -29,7 +32,8 @@ public class board_read implements board_action {
 		}
 		
 		board view = dao.selectDetail( num );
-		
+		List<reply> reply_list = dao.findReply( num );
+
 		if( isCook ) {
 			dao.hitIncrease(num);
 			Cookie cook = new Cookie(num+"", "ok");
@@ -45,7 +49,7 @@ public class board_read implements board_action {
 			response.addCookie(cook);
 		}
 		
-		
+		request.setAttribute("reply_list", reply_list);
 		request.setAttribute("data", view);
 		request.setAttribute("prt", "board/detail");
 		return "/";

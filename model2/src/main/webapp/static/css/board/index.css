@@ -8,6 +8,7 @@
 	row-gap:20px;
 	position:relative;
 	margin:0 auto;
+	overflow:hidden;
 }
 #board_wrap>h3{
 	padding:15px 50px;

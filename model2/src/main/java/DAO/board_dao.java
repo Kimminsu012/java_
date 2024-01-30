@@ -5,12 +5,114 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DTO.board;
+import DTO.reply;
 
 public class board_dao extends parent_dao {
 	
 	public board_dao() {
 		createTable();
 	}
+	
+	// 댓글 삭제
+	public void delete_reply(int id) {
+		String sql="delete from reply where id=?";
+		try {
+			pt=conn.prepareStatement(sql);
+			pt.setInt(1, id);
+			pt.executeUpdate();
+			
+		}catch(SQLException e) {
+			System.out.println("글 삭제 실패");
+			e.printStackTrace();
+		}
+	}
+	
+	// 특정 게시글의 댓글 불러오기
+	public List<reply> findReply(int bid) {
+		List<reply> list = new ArrayList<>();
+		
+		String sql = "select * from reply where board_id=? order by wdate asc";
+		try {
+			pt=conn.prepareStatement(sql);
+			pt.setInt(1, bid);
+			rs = pt.executeQuery();
+			while( rs.next() ) {
+				reply data = new reply(rs.getInt(1), rs.getInt(2), rs.getInt(6) , rs.getString(3), rs.getString(5), rs.getTimestamp(4) );
+				list.add(data);
+			}
+			if( !list.isEmpty() ) {
+				return list;
+			}
+			
+			
+		}catch(SQLException e) {
+			System.out.println("게시글의 댓글 불러오기 실패");
+			e.printStackTrace();
+		}
+		
+		
+		return null;
+	}
+	
+	// 댓글 작성
+	public void write(reply re) {
+		String sql="insert into reply(board_id, comment,  writer, member_id) values (?,?,?,?)";
+		try {
+			pt=conn.prepareStatement(sql);
+			pt.setInt(1, re.getBoard_id());
+			pt.setString(2, re.getComment());
+			pt.setString(3, re.getWriter());
+			pt.setInt(4, re.getMember_id());
+			
+			pt.executeUpdate();
+			
+			
+		}catch(SQLException e) {
+			System.out.println("댓글 작성 실패");
+			e.printStackTrace();
+		}
+		
+	}
+	
+	// 글 삭제
+	public void delete(int id) {
+		String sql="delete from board where id=?";
+		try {
+			pt=conn.prepareStatement(sql);
+			pt.setInt(1, id);
+			pt.executeUpdate();
+			
+			sql = "delete from reply where board_id=?";
+			pt=conn.prepareStatement(sql);
+			pt.setInt(1, id);
+			pt.executeUpdate();
+			
+		}catch(SQLException e) {
+			System.out.println("글 삭제 실패");
+			e.printStackTrace();
+		}
+	}
+	
+	// 글 수정
+	public board update(board b) {
+		String sql = "update board set title=? , lang=?, answer_mail=?, content=?, wdate=now() where id=?";
+		try {
+			pt=conn.prepareStatement(sql);
+			pt.setString(1, b.getTitle());
+			pt.setString(2, b.getLang());
+			pt.setString(3, b.getAnswer_mail());
+			pt.setString(4, b.getContent());
+			pt.setInt(5, b.getId());
+			pt.executeUpdate();
+			
+		}catch(SQLException e) {
+			System.out.println("글 수정 실패");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	
 	// 조회수 증가
 	public void hitIncrease(int id) {
