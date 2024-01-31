@@ -14,12 +14,15 @@ public class member_login implements member_action{
 	@Override
 	public String action(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if( request.getParameter("cmd") == null ) {
+			
 			request.setAttribute("prt", "member/signin");
 			return "/";
+			
 			
 		}else { // 이메일과 비번으로 로그인 처리
 			String email = request.getParameter("email");
 			String pw = request.getParameter("pin");
+			String preUrl=request.getParameter("cmd"); // 로그인페이지 이전 주소
 			
 			member user = dao.findByemailpw(email,pw);
 			if( user == null ) { // 로그인 실패
@@ -32,7 +35,7 @@ public class member_login implements member_action{
 				request.getSession().setAttribute("user", user);
 				
 			}
-			response.sendRedirect("/");
+			response.sendRedirect(preUrl);
 			return null;
 		}		
 	}

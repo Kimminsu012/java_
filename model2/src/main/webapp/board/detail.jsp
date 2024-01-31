@@ -99,7 +99,7 @@
 	function reply_del(i, bid){
 		var real = confirm("정말로 삭제 하시겠습니까?");
 		if( real ){
-			location.herf="/board_replyDelete.do?id="+i+"&bid="+bid;
+			location.href="/board_replyDelete.do?id="+i+"&bid="+bid;
 		}
 	}
 

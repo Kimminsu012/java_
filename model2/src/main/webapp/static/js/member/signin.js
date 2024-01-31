@@ -4,6 +4,12 @@
  
  
  
+$(function(){
+	var preUrl = document.referrer;
+	$("#cmd").val(preUrl);
+});
+ 
+ 
 function login(){
 	if( $("#email").val() == ''){
 		alert("이메일을 입력 하세요.")
@@ -14,4 +20,6 @@ function login(){
 	}else{
 		$("#signFm").submit();
 	}
+	
 }
+

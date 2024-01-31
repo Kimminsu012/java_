@@ -20,7 +20,7 @@ public class board_dao extends parent_dao {
 			pt=conn.prepareStatement(sql);
 			pt.setInt(1, id);
 			pt.executeUpdate();
-			
+
 		}catch(SQLException e) {
 			System.out.println("글 삭제 실패");
 			e.printStackTrace();
@@ -157,7 +157,10 @@ public class board_dao extends parent_dao {
 	public List<board> Allselect( int row ){
 		List<board> list = new ArrayList<>();
 		
-		String sql = "select * from board order by wdate desc limit ? , 10";
+		String sql = "select board.* , count(reply.id) as cnt " // cnt는 가상의 colum
+				+ " from board "
+				+ " left join reply on board.id=reply.board_id "
+				+ " group by board.id order by wdate desc limit ? , 10"; // 댓글의 갯수 구하기
 		try {
 			pt = conn.prepareStatement(sql);
 			pt.setInt(1, row);
@@ -167,7 +170,8 @@ public class board_dao extends parent_dao {
 			while( rs.next() ) {
 				board data = new board(rs.getInt(1), rs.getInt(7), rs.getInt(9),
 						rs.getString(2), rs.getString(3), rs.getString(4), 
-						rs.getString(5), rs.getString(8), rs.getTimestamp(6));
+						rs.getString(5), rs.getString(8), rs.getTimestamp(6), 
+						rs.getInt("cnt") );
 				list.add(data);
 			}
 			if( !list.isEmpty() ) 
